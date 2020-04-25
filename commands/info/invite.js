@@ -4,7 +4,7 @@ const config = require("../../config.json")
 exports.run = (client, message, args) => {
 var embed = new RichEmbed()
     .setTitle(`${client.user.username}'s`)
-    .setDescription("Thank you for choosing Lalachan! We are still in production so please report any bugs. [Click Here](https://discordapp.com/oauth2/authorize?client_id=696027503499673600&scope=bot&permissions=2146958591) to add to your server.")
+    .setDescription("Thank you for choosing Lalachan! We are still in production so please report any bugs. [Click Here](https://discordapp.com/oauth2/authorize?client_id=700006316361384067&scope=bot&permissions=2146958591) to add to your server.")
     .setColor(config.color)
     .setFooter(`${config.creator} v${version}`)
     .setThumbnail(client.user.displayAvatarURL)

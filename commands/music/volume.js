@@ -4,7 +4,7 @@ module.exports.run = async (client, msg, args) => {
   if (!msg.member.voiceChannel) return msg.channel.send({ embed: { color: 0x4db2b6, description: `You must join voice channel first!`}});
   if (!serverQueue) return msg.reply("Are you sure? queue is empty !");
   try {
-    if (!args.length) return msg.channel.send({ embed: { color: 0x4db2b6, description: `🔈 Current volume is ${serverQueue.volume}%!`}});
+    if (!args.length) return msg.channel.send({ embed: { color: 0x4db2b6, description: `🔈 Current volume is ${serverQueue.volume}!`}});
     args[0].replace("/\%/g", "");
     if (serverQueue.voiceChannel.id !== msg.member.voiceChannel.id) return msg.channel.send({ embed: { color: 0x8bb6ff, description: `You must be in **${serverQueue.voiceChannel.name}** to loop the queue`}});
     if (isNaN(args[0])) return msg.channel.send("**Please input valid number >:(**");

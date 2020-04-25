@@ -15,7 +15,7 @@ module.exports = (client, message) => {
     prefix = client.config.prefix
   }
   
-  let profanities = ["palkon"]
+  let profanities = ['palkon']
   for (x = 0; x < profanities.length; x++) {
     if (message.content.includes(profanities[x])) {
       //msg.member.send({ embed: { color: 0xFF0000, description: `${msg.author} that word is not allowed on this server! <:pepefurry:660495306563125276>`}});
@@ -25,7 +25,7 @@ module.exports = (client, message) => {
     }
   }
   
-  if(message.isMentioned(client.user.id)) {
+  if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     return message.channel.send({ embed: { color: 0x4db2b6, description: `My prefix in server is : \`${config.prefix}\``}})
   }
 

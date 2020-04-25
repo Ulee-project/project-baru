@@ -54,18 +54,18 @@ async function handleVideo (video, msg, voiceChannel, hide = false){
 	}
 	if(!queue){
 		try{
-			const thisMess = await msg.channel.send({ embed: { color: 0x4db2b6, description: `🔍 Look for the song you requested..`}});
+			//const thisMess = await msg.channel.send({ embed: { color: 0x4db2b6, description: `🔍 Look for the song you requested..`}});
 			const connection = await voiceChannel.join();
 			const Queue = {
 				channel: msg.channel,
 				voiceChannel,
 				connection,
 				songs: [song],
-				volume: 50,
+				volume: 20,
 				playing: true,
-				loop: false
+				loop: false,
 			}
-			thisMess.delete();
+			//thisMess.delete();
 			msg.client.queue.set(msg.guild.id, Queue);
 			return play(msg, song);
 		}catch(e){
@@ -74,7 +74,7 @@ async function handleVideo (video, msg, voiceChannel, hide = false){
 		}
 	}
 	queue.songs.push(song);
-	if(!hide) return msg.channel.send({ embed: { title: '🏳 Added Queue', timestamp: new Date(),	footer: { text: `${config.creator} v${version}`}, color: 0x4db2b6, description: `[${song.title}](${song.url}) - [${song.author}]`}});
+	if(!hide) return msg.channel.send({ embed: { title: 'Queued',	footer: { text: `v${version}`}, color: 0x4db2b6, description: `[${song.title}](${song.url}) [${song.author}]`}});
 }
 
 function play(msg, song){
@@ -91,8 +91,8 @@ function play(msg, song){
 		play(msg, queue.songs[0]);
 	})
 	.on('error', console.error);
-	dispatcher.setVolumeLogarithmic(queue.volume /50);
-	queue.channel.send({ embed: { color: 0x4db2b6, timestamp: new Date(), footer: { text: `${config.creator} v${version}`},  description: `[${song.title}](${song.url}) - [${song.author}]`}});
+	dispatcher.setVolumeLogarithmic(queue.volume /20);
+	queue.channel.send({ embed: { title: 'Now play', color: 0x4db2b6, footer: { text: `v${version}`},  description: `[${song.title}](${song.url}) [${song.author}]`}});
 }
 
 exports.conf = {

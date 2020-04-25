@@ -7,8 +7,10 @@ const queue = new Collection();
 const invites = {};
 client.queue = queue;
 const bdbot = require("./handler/ClientBuilder.js");
+var jimp = require("jimp")
 
 client.config = require('./config.json')
+//client.util = require("./util.js");
 
 client.on('ready', () => {
   client.guilds.forEach(g => {
@@ -24,25 +26,27 @@ client.on('guildMemberAdd', member => {
     invites[member.guild.id] = guildInvites;
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const logChannel = client.channels.get("696898452327628910")
+     let wChan = db.fetch(`${member.guild.id}`)
+
+	if(wChan == null) return;
+	
+	if(!wChan) return;
     //logChannel.send(`> **${member}** joined using invite code **${invite.code}** from **${inviter.username}**. Invite was used **${invite.uses}** times since its creation.`);
-    logChannel.send({ embed: { color: 0x4db2b6,  description: `${member} joined the server with invite **${inviter.username}**. Invite was used \`\`${invite.uses}\`\`!`}});
+    member.guild.channels.get(wChan).send(`Teitoku ${member} joined the server with invite **${inviter.username}**. Invite was used \`\`${invite.uses}\`\`!`);
     member.send(`${member} Thanks you, for joined the server!`);
   });
 });
 
 client.on('guildMemberRemove', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    invites[member.guild.id] = guildInvites;
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const logChannel = client.channels.get("696898452327628910")
+    let wChan = db.fetch(`${member.guild.id}`)
+	
+	if(wChan == null) return;
+	
+	if(!wChan) return;
     //logChannel.send(`> **${member}** joined using invite code **${invite.code}** from **${inviter.username}**. Invite was used **${invite.uses}** times since its creation.`);
-    logChannel.send({ embed: { color: 0x8bb6ff,  description: `${member} lefted the server with invite **${inviter.username}**!`}});
-    member.send(`${member} Thanks you, for the all time with **Lala**!`);
+    member.guild.channels.get(wChan).send(`Teitoku ${member}, left the server! Goodbye ${member.author.username}!`);
   });
-});
+
 
 client.on("message", async message => {
   // MASALAHNYA KARENA LU KAGAK TAMBAHIN if (message.author.bot) return;
@@ -64,7 +68,7 @@ client.on("message", async message => {
     if (message.member.manageable) {
       message.member.setNickname(message.member.displayName.split("[AFK]")[1])
     }
-    await message.channel.send(`<a:checkmark:670616392269037589> ${message.author} welcome back! <a:checkmark:670616392269037589>`)
+    await message.channel.send(`${message.author} welcome back!`)
   } 
   if (message.content.toLowerCase() === `${config.prefix}welcotest`) {
     client.emit("guildMemberAdd", message.member)
@@ -72,12 +76,35 @@ client.on("message", async message => {
   }
 });
 
-require('./server.js');
+client.on("guildCreate", guild => {
+  
+      let channelID;
+    let channels = guild.channels;
+    channelLoop:
+    for (let c of channels) {
+        let channelType = c[1].type;
+        if (channelType === "text") {
+            channelID = c[0];
+            break channelLoop;
+        }
+    }
+
+    let channel = client.channels.get(guild.systemChannelID || channelID);
+  
+    let newserverEmbed = new RichEmbed()
+    .setTitle(`Zego Info`)
+    .setDescription(`__Thanks for adding Lala to your server!__ :smiley:
+Use \`lala!help\` to get a list of commands.
+It's also recommended to join our [discord server](https://discord.gg/wwkHSQ) a to get notified about future updates`)
+    .setColor("#4db2b6")
+channel.send(newserverEmbed)
+});
+
 require("./handler/module.js")(client);
 require("./handler/Event.js")(client);
 
 client.on("warn", console.warn);
 client.on("error", console.error);
 client.on("disconnect", () => console.log("Disconnected."));
-client.on("reconnecting", () => console.log("Reconnecting."));
+client.on("reconnecting", () => console.log("Reconnecting."))
 client.login(process.env.SECRET).catch(console.error);

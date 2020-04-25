@@ -6,8 +6,7 @@ exports.run = async (client, msg, args) => {
 		if (!serverQueue) return msg.channel.send({ embed: { color: 0x4db2b6, description: 'There is nothing playing that I could skip for you.'}});
 		if (serverQueue.voiceChannel.id !== msg.member.voiceChannel.id) return msg.channel.send({ embed: { color: 0x4db2b6, description: `You must be in **${serverQueue.voiceChannel.name}** to loop the queue`}});
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
-    return undefined;
-  
+    return msg.react('⏩');
 }
 
 exports.conf = {

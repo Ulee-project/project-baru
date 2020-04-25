@@ -18,7 +18,7 @@ module.exports.run = async (client, msg, args) => {
   .setTitle(serverQueue.songs[0].title)
   .setURL(serverQueue.songs[0].url)
   .setThumbnail(serverQueue.songs[0].thumbnail)
-  .setDescription(`${progressBar(persentase)} \n\`[${curentDurationMinute}:${currentDurationSeconds} - ${endDurationMinute}:${endDurationSeconds}]\`🔊`)
+  .setDescription(`${progressBar(persentase)} \n\`[${curentDurationMinute}:${currentDurationSeconds} - ${endDurationMinute}:${endDurationSeconds}]\``)
   .setFooter(`${config.creator} v${version}`);
   
   return msg.channel.send('🎶 **Now playing...**', { embed: emb});
@@ -27,35 +27,35 @@ module.exports.run = async (client, msg, args) => {
 function progressBar(percent){
 	let num = Math.floor(percent*15);
 	if(num === 1){
-		return '🔘▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
+		return '🔵▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
 	}else if(num === 2){
-		return '▬🔘▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
+		return '▬🔵▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
 	}else if(num === 3){
-		return '▬▬🔘▬▬▬▬▬▬▬▬▬▬▬▬▬';
+		return '▬▬🔵▬▬▬▬▬▬▬▬▬▬▬▬▬';
 	}else if(num === 4){
-		return '▬▬▬🔘▬▬▬▬▬▬▬▬▬▬▬▬';
+		return '▬▬▬🔵▬▬▬▬▬▬▬▬▬▬▬▬';
 	}else if(num === 5){
-		return '▬▬▬▬🔘▬▬▬▬▬▬▬▬▬▬';
+		return '▬▬▬▬🔵▬▬▬▬▬▬▬▬▬▬';
 	}else if(num === 6){
-		return '▬▬▬▬▬🔘▬▬▬▬▬▬▬▬▬';
+		return '▬▬▬▬▬🔵▬▬▬▬▬▬▬▬▬';
 	}else if(num === 7){
-		return '▬▬▬▬▬▬🔘▬▬▬▬▬▬▬▬';
+		return '▬▬▬▬▬▬🔵▬▬▬▬▬▬▬▬';
 	}else if(num === 8){
-		return '▬▬▬▬▬▬▬🔘▬▬▬▬▬▬▬';
+		return '▬▬▬▬▬▬▬🔵▬▬▬▬▬▬▬';
 	}else if(num === 9){
-		return '▬▬▬▬▬▬▬▬🔘▬▬▬▬▬▬';
+		return '▬▬▬▬▬▬▬▬🔵▬▬▬▬▬▬';
 	}else if(num === 10){
-    return '▬▬▬▬▬▬▬▬▬🔘▬▬▬▬▬';
+    return '▬▬▬▬▬▬▬▬▬🔵▬▬▬▬▬';
 	}else if(num === 11){
-		return '▬▬▬▬▬▬▬▬▬▬🔘▬▬▬▬';
+		return '▬▬▬▬▬▬▬▬▬▬🔵▬▬▬▬';
 	}else if(num === 12){
-		return '▬▬▬▬▬▬▬▬▬▬▬🔘▬▬▬';
+		return '▬▬▬▬▬▬▬▬▬▬▬🔵▬▬▬';
 	}else if(num === 13){
-		return '▬▬▬▬▬▬▬▬▬▬▬▬🔘▬▬';
+		return '▬▬▬▬▬▬▬▬▬▬▬▬🔵▬▬';
   }else if(num === 14){
-		return '▬▬▬▬▬▬▬▬▬▬▬▬▬🔘▬';
+		return '▬▬▬▬▬▬▬▬▬▬▬▬▬🔵▬';
   }else if(num === 15){
-		return '▬▬▬▬▬▬▬▬▬▬▬▬▬▬🔘';
+		return '▬▬▬▬▬▬▬▬▬▬▬▬▬▬🔵';
   }else{
 		return '▬▬STARTING MUSIC▬▬';
   } 
