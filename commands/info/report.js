@@ -6,7 +6,7 @@ module.exports.run = async (client,message,args) => {
     message.reply("Cannot submit empty report!")
   }
   else{
-var channel = client.channels.get("703452961329643571")
+var channel = client.channels.get("703456876481740900")
 var suggestion = args.slice().join(" ");
 var s = new RichEmbed()
 .setTitle("Report")
