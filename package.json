@@ -30,7 +30,9 @@
     "genius-api": "^0.4.1",
     "cheerio": "^0.22.0",
     "yt-search": "^1.1.2",
-    "dblapi.js": "^2.4.0"
+    "dblapi.js": "^2.4.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-binaries": "^4.0.0"
   },
   "engines": {
     "node": "12.x"

@@ -32,7 +32,7 @@ exports.run = async (client, msg, args)=> {
 		const video = await youtube.getVideoByID(videos[0].id);
 		return handleVideo(video, msg, vc);
 	} catch (err) {
-		return msg.channel.send({ embed: { title: 'There is an error', timestamp: new Date(), footer: { text: `lala!report or contact Bartholomeouw#2415`} ,color: 0x4db2b6, description: err.stack}});
+		return msg.channel.send({ embed: { title: 'There is an error 1', timestamp: new Date(), footer: { text: `lala!report or contact Bartholomeouw#2415`} ,color: 0xc73442, description: err.stack}});
 }
 }
 
@@ -70,7 +70,7 @@ async function handleVideo (video, msg, voiceChannel, hide = false){
 			return play(msg, song);
 		}catch(e){
 			msg.client.queue.delete(msg.guild.id);
-			return msg.channel.send({ embed: { title: 'There is an error', timestamp: new Date(), footer: { text: `lala!report or contact Bartholomeouw#2415`}, color: 0x4db2b6, description: e.stack}});
+			return msg.channel.send({ embed: { title: 'There is an error 2', timestamp: new Date(), footer: { text: `lala!report or contact Bartholomeouw#2415`}, color: 0x4db2b6, description: e.stack}});
 		}
 	}
 	queue.songs.push(song);
